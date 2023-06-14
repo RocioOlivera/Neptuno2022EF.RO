@@ -22,7 +22,7 @@ namespace Neptuno2022EF.Entidades.Entidades
         {
             Detalles = new List<DetalleVenta>();
         }
-        //public decimal GetTotal() => Detalles.Sum(d => d.Cantidad * d.PrecioUnitario);
+        public decimal GetTotal() => Detalles.Sum(d => d.Cantidad * d.PrecioUnitario);
         public Cliente Cliente { get; set; }
     }
 }

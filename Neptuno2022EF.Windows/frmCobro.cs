@@ -118,9 +118,9 @@ namespace Neptuno2022EF.Windows
             {
                 return;
             }
-            else if (importeRecibido <= 0 || importeRecibido < monto)
+            else if (importeRecibido <= 0 /*|| importeRecibido < monto*/)
             {
-                MessageHelper.Mensaje(TipoMensaje.Error, "Importe inferior a lo que se debe pagar", "Error");
+                MessageHelper.Mensaje(TipoMensaje.Error, "Inserte pago mayor que 0.", "Error");
                 return;
             }
 
@@ -173,45 +173,20 @@ namespace Neptuno2022EF.Windows
         private Cliente cliente;
         private void btnOk_Click_1(object sender, EventArgs e)
         {
-            //Venta venta=new Venta();
-            //if (ValidarDatos())
-            //{
-            //    var ctaCte = new CtaCte
-            //    {
-            //        FechaMovimiento = DateTime.Now,
-            //        ClienteId = venta.ClienteId,
-            //        Debe = 0,
-            //        Haber = venta.Total,
-            //        Saldo = 0,
-            //        Movimiento = $"PAGO EFECT. {venta.VentaId}"
-            //    };
-
-                //_serviciosCtasCtes.Agregar(ctaCte);
-
-                //ctaCte = new CtaCte
-                //{
-                //    FechaMovimiento = DateTime.Now,
-                //    ClienteId = 2,
-                //    Debe = monto - importe,
-                //    Haber = importe,
-                //    Saldo = monto - importe,
-                //    Movimiento = "PAGO EFECT."
-
-                //};
-
-                //_serviciosCtasCtes.Agregar(ctaCte);
-
+           
                 DialogResult = DialogResult.OK;
-                MessageHelper.Mensaje(TipoMensaje.OK, "Venta Pagada!!!", "Mensaje");
-            //}
-
-
-
+                MessageHelper.Mensaje(TipoMensaje.OK, "Cuenta corriente actualizada.", "Mensaje");
+            
         }
 
         public void SetCliente(int clienteId)
         {
             this.clienteId = clienteId;
+        }
+
+        private void lblImporteRecibido_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

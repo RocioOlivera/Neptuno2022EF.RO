@@ -1,9 +1,12 @@
 ﻿using Neptuno2022EF.Entidades.Dtos.CtaCte;
 using Neptuno2022EF.Entidades.Dtos.Venta;
 using Neptuno2022EF.Entidades.Entidades;
+using Neptuno2022EF.Entidades.Enums;
 using Neptuno2022EF.Ioc;
 using Neptuno2022EF.Servicios.Interfaces;
+using Neptuno2022EF.Servicios.Servicios;
 using Neptuno2022EF.Windows.Helpers;
+using Neptuno2022EF.Windows.Helpers.Enum;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -83,11 +86,14 @@ namespace Neptuno2022EF.Windows
             }
             var r = dgvDatos.SelectedRows[0];
             var cta = (CtaCteListDto)r.Tag;
+
+            
             try
             {
                 List<DetalleCtaCteListDto> ctaCteDetalleDto = _servicioCtaCte.GetDetalleCtasCtes(cta.ClienteId);
                 frmDetalleCtaCte frm = new frmDetalleCtaCte(DI.Create<IServiciosCtasCtes>(),DI.Create<IServiciosClientes>()) { Text = "Detalle de la Cuenta" };
                 frm.SetCtaCte(ctaCteDetalleDto);
+                string nombre = cta.NombreCliente.ToString();
                 frm.ShowDialog(this);
             }
             catch (Exception)
@@ -95,6 +101,52 @@ namespace Neptuno2022EF.Windows
 
                 throw;
             }
+        }
+
+        private void btnCobrar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            var r = dgvDatos.SelectedRows[0];
+            var ctaCteDto = (CtaCteListDto)r.Tag;
+
+            if (ctaCteDto.Saldo <= 0 )
+            {
+                return;
+            }
+
+            frmCobro frm = new frmCobro(DI.Create<IServiciosCtasCtes>(), DI.Create<IServiciosClientes>(), DI.Create<IServiciosVentas>()) { Text = "Introducir pago..." };
+            frm.SetMonto(ctaCteDto.Saldo);
+            DialogResult dr = frm.ShowDialog(this);
+            var cta = _servicioCtaCte.GetCtaCtePorId(ctaCteDto.CtaCteId);
+            try
+            {
+                var ctaCte = new CtaCte
+                {
+                    FechaMovimiento = DateTime.Now,
+                    ClienteId = cta.ClienteId,
+                    Debe = 0,
+                    Haber = cta.Saldo,
+                    Saldo = 0,
+                    Movimiento = $"PAGO EFECT. Cta Cte"
+                };
+
+                _servicioCtaCte.Agregar(ctaCte);
+                GridHelper.SetearFila(r, ctaCteDto);
+                MostrarDatosGrilla(lista);
+            }
+            catch (Exception exception)
+            {
+                MessageHelper.Mensaje(TipoMensaje.Error, exception.Message, "Error");
+            }
+        }
+
+        private void tsbCerrar_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

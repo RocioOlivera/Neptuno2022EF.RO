@@ -301,7 +301,7 @@ namespace Neptuno2022EF.Windows
             }
             var venta = _servicio.GetVentaPorId(ventaDto.VentaId);
             //decimal saldo = _serviciosCtasCtes.GetSaldo(venta.ClienteId);
-            //var saldo = r.GetCliente();
+            decimal saldo = venta.GetTotal();
             try
             {
 
@@ -311,7 +311,7 @@ namespace Neptuno2022EF.Windows
                     ClienteId = venta.ClienteId,
                     Debe = 0,
                     Haber = venta.Total,
-                    Saldo = 0,
+                    Saldo = saldo-venta.Total,
                     Movimiento = $"VENTA ANULADA {venta.VentaId}"
                 };
                 _serviciosCtasCtes.Agregar(ctaCte);
@@ -338,6 +338,12 @@ namespace Neptuno2022EF.Windows
 
             var r = dgvDatos.SelectedRows[0];
             var ventaDto = (VentaListDto)r.Tag;
+
+            if (ventaDto.Estado == Estado.Anulada.ToString() || ventaDto.Estado == Estado.Paga.ToString())
+            {
+                return;
+            }
+
             frmCobro frm = new frmCobro(DI.Create<IServiciosCtasCtes>(),DI.Create<IServiciosClientes>(), DI.Create<IServiciosVentas>()) { Text = "Introducir pago..." };
             frm.SetMonto(ventaDto.Total);
             DialogResult dr = frm.ShowDialog(this);
@@ -360,8 +366,7 @@ namespace Neptuno2022EF.Windows
                 venta.Estado = Estado.Paga;
                 _servicio.CambiarEstado(venta);
                 GridHelper.SetearFila(r, venta);
-                //MessageHelper.Mensaje(TipoMensaje.OK, "Venta Pagada!!!", "Mensaje");
-                //RecargarGrilla();
+                RecargarGrilla();
             }
             catch (Exception exception)
             {

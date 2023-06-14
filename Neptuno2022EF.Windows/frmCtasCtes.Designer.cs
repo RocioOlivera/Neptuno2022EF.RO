@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCtasCtes));
             this.dgvDatos = new System.Windows.Forms.DataGridView();
             this.cmnCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnSaldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,6 +43,8 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbImprimir = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnCobrar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbCerrar = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -51,9 +54,9 @@
             // 
             this.dgvDatos.AllowUserToAddRows = false;
             this.dgvDatos.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.dgvDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.dgvDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cmnCliente,
@@ -80,8 +83,8 @@
             // 
             // cmnSaldo
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.cmnSaldo.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.cmnSaldo.DefaultCellStyle = dataGridViewCellStyle6;
             this.cmnSaldo.HeaderText = "Saldo";
             this.cmnSaldo.MinimumWidth = 6;
             this.cmnSaldo.Name = "cmnSaldo";
@@ -100,6 +103,8 @@
             this.toolStripSeparator2,
             this.tsbImprimir,
             this.toolStripSeparator3,
+            this.btnCobrar,
+            this.toolStripSeparator4,
             this.tsbCerrar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -173,6 +178,23 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 59);
             // 
+            // btnCobrar
+            // 
+            this.btnCobrar.Enabled = false;
+            this.btnCobrar.Image = ((System.Drawing.Image)(resources.GetObject("btnCobrar.Image")));
+            this.btnCobrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnCobrar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCobrar.Name = "btnCobrar";
+            this.btnCobrar.Size = new System.Drawing.Size(58, 56);
+            this.btnCobrar.Text = "Cobrar";
+            this.btnCobrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCobrar.Click += new System.EventHandler(this.btnCobrar_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 59);
+            // 
             // tsbCerrar
             // 
             this.tsbCerrar.Image = global::Neptuno2022EF.Windows.Properties.Resources.close_window_32px;
@@ -182,6 +204,7 @@
             this.tsbCerrar.Size = new System.Drawing.Size(53, 56);
             this.tsbCerrar.Text = "Cerrar";
             this.tsbCerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbCerrar.Click += new System.EventHandler(this.tsbCerrar_Click);
             // 
             // frmCtasCtes
             // 
@@ -216,5 +239,7 @@
         private System.Windows.Forms.ToolStripButton tsbImprimir;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton tsbCerrar;
+        private System.Windows.Forms.ToolStripButton btnCobrar;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }

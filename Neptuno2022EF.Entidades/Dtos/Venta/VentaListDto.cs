@@ -16,6 +16,6 @@ namespace Neptuno2022EF.Entidades.Dtos.Venta
         public decimal Total { get; set; }
         public string Estado { get; set; }
         //public Estado Estado { get; set;}
-
+        public int clienteId { get; set; }
     }
 }

@@ -41,7 +41,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblVuelto = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btnSalir = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnOk = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
@@ -162,6 +161,7 @@
             this.lblImporteRecibido.TabIndex = 0;
             this.lblImporteRecibido.Text = "0.00";
             this.lblImporteRecibido.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblImporteRecibido.Click += new System.EventHandler(this.lblImporteRecibido_Click);
             // 
             // groupBox1
             // 
@@ -201,19 +201,6 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Vuelto";
             // 
-            // btnSalir
-            // 
-            this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSalir.Location = new System.Drawing.Point(934, 707);
-            this.btnSalir.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(120, 62);
-            this.btnSalir.TabIndex = 15;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
@@ -236,8 +223,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 782);
+            this.ControlBox = false;
             this.Controls.Add(this.btnOk);
-            this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
@@ -268,7 +255,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblVuelto;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Button btnOk;
     }
